@@ -7,7 +7,7 @@ export default {
   },
   methods: {
     iniciar() {
-      this.$router.push('/chats')
+      this.$router.push({ name: 'about' })
     }
   }
 }
