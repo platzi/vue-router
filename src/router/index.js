@@ -6,7 +6,8 @@ const router = createRouter({
   routes: [
     { path: '/', component: HomeView },
     { path: '/about', component: import('../views/AboutView.vue') },
-    { path: '/chats', component: import('../views/ChatsView.vue') }
+    { path: '/chats', component: import('../views/ChatsView.vue') },
+    { path: '/chats/:chatId', component: import('../views/ChatsView.vue') }
   ]
 })
 
