@@ -1,0 +1,10 @@
+<template>
+  <div>
+    <aside>
+      Chats
+    </aside>
+    <article>
+      Mensajes
+    </article>
+  </div>
+</template>
