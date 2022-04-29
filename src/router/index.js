@@ -5,7 +5,15 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     // { path: '/home', redirect: { name: 'home' } },
-    { path: '/', name: 'home', component: HomeView, alias: ['/home'] },
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView,
+      alias: ['/home'],
+      meta: {
+        requiresAuth: false
+      }
+    },
     {
       path: '/session',
       component: () => import('../views/SessionView.vue'),
@@ -23,6 +31,9 @@ const router = createRouter({
     {
       path: '/chats',
       component: () => import('../views/ChatsView.vue'),
+      meta: {
+        requiresAuth: true
+      },
       children: [
         {
           path: ':chatId',
@@ -40,6 +51,11 @@ const router = createRouter({
 
 router.beforeEach((to, from) => {
   console.log(to, from)
+
+  if (to.meta?.requiresAuth) {
+    console.log(to.path, 'requires auth')
+    return '/session'
+  }
 
   if (to.path === '/') return { name: 'about' }
   return true
