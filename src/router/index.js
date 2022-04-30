@@ -1,10 +1,13 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+import NotFound from '../views/404View.vue';
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
     // { path: '/home', redirect: { name: 'home' } },
+    { path: '/404', component: NotFound },
+    { path: '/:catchAll(.*)', redirect: '/404' },
     {
       path: '/',
       name: 'home',
@@ -36,7 +39,7 @@ const router = createRouter({
       },
       children: [
         {
-          path: ':chatId',
+          path: ':chatId(\\d+)',
           component: () => import('../views/ChatView.vue'),
           props: (route) => {
             return {
